@@ -9,8 +9,8 @@ import {
 import { useState } from 'react'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
 
-function SignUp() {
-    const [fullname, setFullName] = useState("");
+function Login() {
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState({})
@@ -18,7 +18,6 @@ function SignUp() {
     const validateInput = () => {
         let errors = {}
 
-        if(!fullname) errors.fullname = "Full Name is required";
         if(!email) errors.email = "Email is required";
         if(!password) errors.password = "Password is required";
         else if (password.length < 8) errors.password = "Password is too weak";
@@ -29,8 +28,7 @@ function SignUp() {
 
     const handleSubmit = () => {
         if (validateInput()) {
-            console.log("Submitted", fullname, email, password)
-            setFullName("")
+            console.log("Submitted", email, password)
             setEmail("")
             setPassword("")
             setErrors({})
@@ -50,29 +48,13 @@ function SignUp() {
 
                 {/* Title */}
                 <View style={styles.title}>
-                    <Text style={styles.textTitle}>Create Account</Text>
+                    <Text style={styles.textTitle}>Welcome back!</Text>
                     <Text style={styles.textTitle2}>
-                        Join thousands of students and start organizing today
+                        Sign in to continue your learning journey
                     </Text>
                 </View>
 
                 <View style={styles.inputMainContainer}>
-                    
-                    {/* Full Name Field */}
-                    <View style={styles.fieldWrapper}>
-                        <View style={styles.inputContainer}>
-                            <Image style={styles.icon} source={require("../assets/user.png")}/>
-                            <TextInput 
-                                placeholder="Full Name"
-                                placeholderTextColor="#7B8AA0"
-                                autoCorrect={false}
-                                value={fullname}
-                                onChangeText={setFullName}
-                                style={styles.inputStyle}
-                            />
-                        </View>
-                        {errors.fullname && <Text style={styles.errorText}>{errors.fullname}</Text>}
-                    </View>
 
                     {/* Email Field */}
                     <View style={styles.fieldWrapper}>
@@ -108,9 +90,15 @@ function SignUp() {
                         {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
                     </View>
                 </View>
+                    <Pressable style={styles.forgetPasswordContainter}
+                    onPress={() => {}}
+                    >
+                        <Text style={styles.forgetPasswordText}>Forgot Password?</Text>
+                        
+                    </Pressable>
 
                 {/* Submit Button */}
-                <Pressable onPress={handleSubmit}
+                <Pressable onPress={handleSubmit} 
                  style={({ pressed }) => [
                     styles.button,
                     {
@@ -118,15 +106,15 @@ function SignUp() {
                     opacity: pressed ? 0.9 : 1, // Slight opacity change for a better visual effect
                     },
                 ]}
-                >
-                    <Text style={styles.buttonText}>Create Account</Text>
+                 >
+                    <Text style={styles.buttonText}>Sign In</Text>
                 </Pressable>
 
                 {/* Footer */}
                 <View style={styles.signInContainer}>
-                    <Text style={styles.signInText}>Already have an account? </Text>
+                    <Text style={styles.signInText}>Don't have an account? </Text>
                     <Pressable onPress={() => {}}>
-                        <Text style={styles.signInText2}>Sign In</Text>
+                        <Text style={styles.signInText2}>Sign Up</Text>
                     </Pressable>
                 </View>
 
@@ -140,6 +128,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#f5f5f5",
         alignItems: "center",
+        marginTop: 50
     },
     imageContainer: {
         backgroundColor: "#155DFC",
@@ -158,7 +147,8 @@ const styles = StyleSheet.create({
     },
     title: {
         alignItems: 'flex-start',
-        paddingHorizontal: 20,
+        marginRight: 80,
+        marginTop: 10
     },
     textTitle: {
         fontSize: 25,
@@ -176,7 +166,7 @@ const styles = StyleSheet.create({
     },
     fieldWrapper: {
         width: 370,
-        marginBottom: 15, // Gap between different input fields
+        marginBottom: 25, 
     },
     inputContainer: {
         flexDirection: 'row',
@@ -203,9 +193,21 @@ const styles = StyleSheet.create({
     errorText: {
         color: "red",
         fontSize: 12,
-        marginTop: 5,
-        marginLeft: 5,
-        alignSelf: "flex-start" // Forces text to the left
+        position: "absolute",
+        bottom: -20,
+        left: 5 
+    },
+    forgetPasswordContainter: {
+        width: 370,
+        marginBottom: 20,
+        alignItems: "flex-end"
+    },
+    forgetPasswordText: {
+        fontSize: 15,
+        fontWeight: "bold",
+        color: "#155DFC",
+        marginLeft: 200,
+        marginBottom: 20
     },
     button: {
         backgroundColor: "#155DFC",
@@ -214,7 +216,8 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 10
+        marginTop: 10,
+        
     },
     buttonText: {
         fontSize: 18,
@@ -235,4 +238,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SignUp;
+export default Login;
