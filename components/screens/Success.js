@@ -1,8 +1,19 @@
 import {View, Text, StyleSheet, Image} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 
 function Success({navigation}){
+    const [dots, setDots] = useState("")
+
+    // Animation effect for dot
+    useEffect(() => {
+        const dotInterval = setInterval(() => {
+            setDots((prev) => (prev.length < 3 ? prev + "." : ""))
+        }, 500) // 500 ms
+        return () => clearInterval(dotInterval)
+    }, [])
+
+    // Redirect Effect
     useEffect(() => {
         const timer = setTimeout(() => {
             navigation.replace("Login")
@@ -30,7 +41,7 @@ function Success({navigation}){
             </View>
 
             <View style={styles.redirectTextContainer}>
-                <Text style={styles.redirectText}>Redirecting...</Text>
+                <Text style={styles.redirectText}>Redirecting{dots}</Text>
             </View>
         </SafeAreaView>
     )
