@@ -99,11 +99,18 @@ function Login({navigation}) {
                     </Pressable>
 
                 {/* Submit Button */}
-                <Pressable onPress={handleSubmit} 
-                 style={styles.button}
-                 >
+                <Pressable
+                onPress={handleSubmit}
+                style={({ pressed }) => ({
+                    transform: [{ scale: pressed ? 0.97 : 1 }],
+                    opacity: pressed ? 0.9 : 1,
+                })}
+                >
+                <View style={styles.button}>
                     <Text style={styles.buttonText}>Sign In</Text>
+                </View>
                 </Pressable>
+
 
                 {/* Footer */}
                 <View style={styles.signInContainer}>

@@ -34,6 +34,7 @@ function Signup({navigation}) {
             setEmail("")
             setPassword("")
             setErrors({})
+            navigation.navigate("SuccessScreen")
         }
     }
 
@@ -110,11 +111,17 @@ function Signup({navigation}) {
                 </View>
 
                 {/* Submit Button */}
-                <Pressable onPress={handleSubmit}
-                    style={styles.button}   
-                >
-                    <Text style={styles.buttonText}>Create Account</Text>
-                </Pressable>
+                <Pressable
+                    onPress={handleSubmit}
+                    style={({ pressed }) => ({
+                        transform: [{ scale: pressed ? 0.97 : 1 }],
+                        opacity: pressed ? 0.9 : 1,
+                    })}
+                    >
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Create Account</Text>
+                    </View>
+                    </Pressable>
 
                 {/* Footer */}
                 <View style={styles.signInContainer}>
