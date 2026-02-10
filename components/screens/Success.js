@@ -1,36 +1,47 @@
-import {View, Text, StyleSheet, Image} from 'react-native'
+import {View, Text, StyleSheet, Image, Animated} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef} from 'react'
 
 
 function Success({navigation}){
     const [dots, setDots] = useState("")
+    const scaleValue = useRef(new Animated.Value(0)).current;
 
-    // Animation effect for dot
     useEffect(() => {
-        
+        // 2. Start the "Pop" animation immediately
+        Animated.spring(scaleValue, {
+            toValue: 1,
+            friction: 3, // Lower = more "bouncy"
+            tension: 40,
+            useNativeDriver: true,
+        }).start();
+
+        // Dots Animation
         const dotInterval = setInterval(() => {
             setDots((prev) => (prev.length < 3 ? prev + "." : ""))
-        }, 500) // 500 ms
-        return () => clearInterval(dotInterval)
-    }, [])
+        }, 500)
 
-    // Redirect Effect
-    useEffect(() => {
+        // Redirect timer
         const timer = setTimeout(() => {
             navigation.replace("Login")
-        }, 2000)
-        return () => clearTimeout(timer)
-    }, [navigation])   
+        }, 2500); // Increased slightly so user can enjoy the animation
+
+        return () => {
+            clearInterval(dotInterval);
+            clearTimeout(timer);
+        }
+    }, [])
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.imageContainer}>
+            <Animated.View style={[styles.imageContainer,
+                { transform: [{ scale: scaleValue}]}
+            ]}>
                 <Image 
                 source={require("../../assets/success.png")}
                 style={styles.image}
                 />
-            </View>
+            </Animated.View>
 
             <View style={styles.successTextContainer}>
                 <Text style={styles.successText}>Success!</Text>
