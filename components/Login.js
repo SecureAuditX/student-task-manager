@@ -9,7 +9,8 @@ import {
 import { useState } from 'react'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
 
-function Login() {
+
+function Login({navigation}) {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
@@ -36,7 +37,7 @@ function Login() {
     }
 
     return(
-        <SafeAreaProvider>
+        
             <SafeAreaView style={styles.container}>
                 {/* Logo */}
                 <View style={styles.imageContainer}>
@@ -81,7 +82,7 @@ function Login() {
                                 placeholder="Password"
                                 placeholderTextColor="#7B8AA0"
                                 autoCorrect={false}
-                                secureTextEntry
+                                secureTextEntry={true}
                                 value={password}
                                 onChangeText={setPassword}
                                 style={styles.inputStyle}
@@ -99,13 +100,7 @@ function Login() {
 
                 {/* Submit Button */}
                 <Pressable onPress={handleSubmit} 
-                 style={({ pressed }) => [
-                    styles.button,
-                    {
-                    transform: [{ scale: pressed ? 0.98 : 1 }], // Apply scale effect on press
-                    opacity: pressed ? 0.9 : 1, // Slight opacity change for a better visual effect
-                    },
-                ]}
+                 style={styles.button}
                  >
                     <Text style={styles.buttonText}>Sign In</Text>
                 </Pressable>
@@ -113,13 +108,13 @@ function Login() {
                 {/* Footer */}
                 <View style={styles.signInContainer}>
                     <Text style={styles.signInText}>Don't have an account? </Text>
-                    <Pressable onPress={() => {}}>
+                    <Pressable onPress={() => navigation.navigate("Signup")}>
                         <Text style={styles.signInText2}>Sign Up</Text>
                     </Pressable>
                 </View>
 
             </SafeAreaView>
-        </SafeAreaProvider>
+        
     )
 }
 
