@@ -1,5 +1,6 @@
 ﻿# student-task-manager
 
 
-**Project Status: Currently Under Development**
+**Project Status: Currently Under Development 🚧**
+
 
