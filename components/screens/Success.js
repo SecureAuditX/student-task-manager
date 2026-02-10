@@ -2,11 +2,13 @@ import {View, Text, StyleSheet, Image} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useEffect, useState} from 'react'
 
+
 function Success({navigation}){
     const [dots, setDots] = useState("")
 
     // Animation effect for dot
     useEffect(() => {
+        
         const dotInterval = setInterval(() => {
             setDots((prev) => (prev.length < 3 ? prev + "." : ""))
         }, 500) // 500 ms
@@ -19,7 +21,7 @@ function Success({navigation}){
             navigation.replace("Login")
         }, 2000)
         return () => clearTimeout(timer)
-    }, [navigation])
+    }, [navigation])   
 
     return (
         <SafeAreaView style={styles.container}>
@@ -76,7 +78,8 @@ const styles = StyleSheet.create({
     successText: {
         fontSize: 30,
         fontWeight: "bold",
-        color: "#155DFC"
+        color: "#155DFC",
+        fontFamily: "SuccessText"
     },
     successNoteContainer: {
         justifyContent: "center",
@@ -84,7 +87,8 @@ const styles = StyleSheet.create({
         padding: 10
     },
     successNote: {
-        fontSize: 18
+        fontSize: 17,
+        fontFamily: "SuccessTitleText"
     },
     redirectTextContainer: {
         flexDirection: "column",
@@ -94,7 +98,6 @@ const styles = StyleSheet.create({
     },
     redirectText: {
         fontSize: 18,
-        
     }
 })
 

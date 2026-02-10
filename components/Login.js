@@ -5,13 +5,12 @@ import {
     Image, 
     StyleSheet,
     TextInput, 
+    Platform
 } from 'react-native'
 import { useState } from 'react'
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-
-function Login({navigation}) {
-    
+function Login({navigation}) {  
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState({})
@@ -149,19 +148,21 @@ const styles = StyleSheet.create({
     },
     title: {
         alignItems: 'flex-start',
-        marginRight: 80,
+        marginRight: 65,
         marginTop: 10
     },
     textTitle: {
         fontSize: 25,
-        fontWeight: "bold",
-        marginTop: 10
+        fontWeight: Platform.OS === "ios" ? "bold" : "",
+        marginTop: 10, 
+        fontFamily: "ButtonText"
     },
     textTitle2: {
         fontSize: 15,
-        marginTop: 5,
+        marginTop: Platform.OS === "ios" ? 10 : 0,
         color: "#222831",
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: "TitleText"
     }, 
     inputMainContainer: {
         marginTop: 30
@@ -223,8 +224,9 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 18,
-        fontWeight: "bold",
-        color: "white"
+        fontWeight: Platform.OS === "ios" ? "bold" : "",
+        color: "white",
+        fontFamily: "ButtonText"
     }, 
     signInContainer: {
         flexDirection: "row",

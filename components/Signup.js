@@ -4,22 +4,13 @@ import {
     Pressable, 
     Image, 
     StyleSheet,
-    TextInput, 
+    TextInput,
+    Platform 
 } from 'react-native'
 import { useState } from 'react'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
-import {useFonts} from 'expo-font'
 
-function Signup({navigation}) {
-    
-    // fonts
-    const [fontsLoaded] = useFonts({
-        ButtonText: require("../assets/fonts/ArchivoBlack-Regular.ttf"),
-        TitleText: require("../assets/fonts/NotoSansSC-Bold.ttf"),
-        noteText: require("../assets/fonts/NotoSansSC-Light.ttf"),
-
-    })
-    
+function Signup({navigation}) { 
     const [fullname, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
@@ -47,16 +38,6 @@ function Signup({navigation}) {
             navigation.navigate("SuccessScreen")
         }
     }
-
-    if (!fontsLoaded) {
-        return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Font style loading...</Text>
-            </View>
-        );
-    }
-
-
     return(
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -160,6 +141,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#f5f5f5",
         alignItems: "center",
+        marginTop: 20
     },
     imageContainer: {
         backgroundColor: "#155DFC",
@@ -179,19 +161,22 @@ const styles = StyleSheet.create({
     title: {
         alignItems: 'flex-start',
         paddingHorizontal: 20,
+        marginRight: 15,
+        marginTop: 10
     },
     textTitle: {
         fontSize: 25,
-        fontWeight: "bold",
+        fontWeight: Platform.OS === "ios" ? "bold" : "",
         marginTop: 10,
-         fontFamily: "ButtonText"
+        fontFamily: "ButtonText",
+         
     },
     textTitle2: {
-        fontSize: 15,
-        marginTop: 5,
+        fontSize: 13,
+        marginTop: Platform.OS === "ios" ? 10 : 0,
         color: "#222831",
         textAlign: 'center',
-        
+        fontFamily: "TitleText"
     }, 
     inputMainContainer: {
         marginTop: 30
@@ -240,7 +225,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 18,
-        fontWeight: "bold",
+        fontWeight: Platform.OS === "ios" ? "bold" : "",
         color: "white",
         fontFamily: "ButtonText"
     }, 
@@ -250,11 +235,12 @@ const styles = StyleSheet.create({
     },
     signInText: {
         color: "#7B8AA0",
-        fontSize: 14
+        fontSize: 14,
     },
     signInText2: {
         color: "#155DFC",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        
     }
 })
 
