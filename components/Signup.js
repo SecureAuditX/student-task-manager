@@ -8,8 +8,18 @@ import {
 } from 'react-native'
 import { useState } from 'react'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
+import {useFonts} from 'expo-font'
 
 function Signup({navigation}) {
+    
+    // fonts
+    const [fontsLoaded] = useFonts({
+        ButtonText: require("../assets/fonts/ArchivoBlack-Regular.ttf"),
+        TitleText: require("../assets/fonts/NotoSansSC-Bold.ttf"),
+        noteText: require("../assets/fonts/NotoSansSC-Light.ttf"),
+
+    })
+    
     const [fullname, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
@@ -37,6 +47,15 @@ function Signup({navigation}) {
             navigation.navigate("SuccessScreen")
         }
     }
+
+    if (!fontsLoaded) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text>Font style loading...</Text>
+            </View>
+        );
+    }
+
 
     return(
         <SafeAreaProvider>
@@ -164,20 +183,22 @@ const styles = StyleSheet.create({
     textTitle: {
         fontSize: 25,
         fontWeight: "bold",
-        marginTop: 10
+        marginTop: 10,
+         fontFamily: "ButtonText"
     },
     textTitle2: {
         fontSize: 15,
         marginTop: 5,
         color: "#222831",
-        textAlign: 'center'
+        textAlign: 'center',
+        
     }, 
     inputMainContainer: {
         marginTop: 30
     },
     fieldWrapper: {
         width: 370,
-        marginBottom: 15, // Gap between different input fields
+        marginBottom: 15, 
     },
     inputContainer: {
         flexDirection: 'row',
@@ -220,7 +241,8 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 18,
         fontWeight: "bold",
-        color: "white"
+        color: "white",
+        fontFamily: "ButtonText"
     }, 
     signInContainer: {
         flexDirection: "row",
