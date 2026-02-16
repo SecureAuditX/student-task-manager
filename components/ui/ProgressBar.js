@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         color: "white"
     },
     pressableViewDetailsContainer: {
-        backgroundColor: "#EDEDED",
+        backgroundColor: "rgba(255, 255, 255, 0.2)",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         width: 110,
         height: 35,
-        marginTop: 35,
+        marginTop: 25,
         marginLeft: 215
     },
     viewDetailsText: {
         fontSize: 15,
         fontWeight: "bold",
-        color: "black"
+        color: "#FFFFFF"
     }
 })
 
