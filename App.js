@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Success from './components/screens/Success';
+import HomeScreen from './components/Dashboard/Home';
 
 // Keep the splash screen visible while fonts load
 SplashScreen.preventAutoHideAsync();
@@ -37,9 +38,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Signup" component={Signup} />
+        {/* <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Login" component={Login} /> 
-        <Stack.Screen name="SuccessScreen" component={Success} />
+        <Stack.Screen name="SuccessScreen" component={Success} /> */}
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
