@@ -5,6 +5,7 @@ import {
   Image,
   Pressable,
   StyleSheet,
+  Platform
 }
 from 'react-native'
 import { useContext, useState } from 'react'
@@ -34,7 +35,7 @@ function NewTaskScreen(){
       <Text style={styles.label}>Task Title</Text>
       {/* Course input */}
       <TextInput 
-        placeholder='e.g, Mathematics Assignment'
+        placeholder='e.g, Calculus Assignment'
         value={courseTitle}
         style={styles.courseInput}
         onChangeText={setCourseTitle}
@@ -79,14 +80,26 @@ function NewTaskScreen(){
           </View>
           </Pressable>
           </View>
+          </View>
 
-          {showPicker && (
+          {showPicker &&(
+            <View style={Platform.OS === "ios" ? styles.iosPickerWrapper : null}>
+              {Platform.OS === "ios" && (
+                <Pressable onPress={() => setShowPicker(false)}
+                style={styles.doneButton}
+                >
+                  <Text style={styles.doneText}>Done</Text>
+                </Pressable>
+              )}
+
             <DateTimePicker 
             value={new Date()}
             mode="date"
-            display='calendar'
+            display= {Platform.OS === "ios" ? "inline" : "calendar"}
             onChange={(event, selectedDate) => {
-              setShowPicker(false)
+              if (Platform.OS === "android"){
+                setShowPicker(false)
+              }
 
               if (selectedDate) {
                 const formatted = selectedDate.toLocaleDateString("en-US", {
@@ -97,9 +110,13 @@ function NewTaskScreen(){
                 setCourseDueDate(formatted)
               }
             }}
-            />  
+            /> 
+            </View> 
           )}
-        </View>
+        
+          
+          
+        
       
       {/* Priority Option */}
       <Text style={styles.label}>Priority</Text>
@@ -176,8 +193,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingHorizontal: 20,
     borderColor: "rgba(110, 108, 108, 0.35)",
-    backgroundColor: "#e9eff8",
-    marginBottom: 20
+    backgroundColor: "#f6f8fa",
+    marginBottom: 20,
+    width: 365,
+    height: 50
   },
   courseInput2: {
     borderWidth: 0.5,
@@ -186,9 +205,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingHorizontal: 20,
     borderColor: "rgba(110, 108, 108, 0.35)",
-    backgroundColor: "#e9eff8",
+    backgroundColor: "#f6f8fa",
     marginBottom: 20,
-    height: 120,
+    width: 365,
+    height: 110,
   },
   input3Container: {
     flexDirection: "row",
@@ -202,9 +222,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingHorizontal: 20,
     borderColor: "rgba(110, 108, 108, 0.35)",
-    backgroundColor: "#e9eff8",
+    backgroundColor: "#f6f8fa",
     marginBottom: 20,
-    width: 170
+    width: 170,
+    height: 50
   },
   priorityContainer: {
     flexDirection: "row",
@@ -214,7 +235,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderWidth: 0.5,
     borderColor: "#E3E6EA",
-    backgroundColor: "#f3f6fa",
+    backgroundColor: "#f6f8fa",
     width: 112,
     height: 40,
     borderRadius: 20,
@@ -254,7 +275,32 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "#FFFFFF"
-  }
+  },
+iosPickerWrapper: {
+    backgroundColor: "#f6f8fa",
+    borderRadius: 15,
+    marginTop: -10, // Pulls it slightly closer to the input
+    marginBottom: 20,
+    padding: 15,
+    borderWidth: 1,
+    borderColor: "rgba(110, 108, 108, 0.1)",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  doneButton: {
+    alignSelf: 'flex-end',
+    padding: 8,
+    marginBottom: 5,
+  },
+  doneText: {
+    color: "#155DFC",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+
 }) 
 
 export default NewTaskScreen
