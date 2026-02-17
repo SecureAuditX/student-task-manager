@@ -17,7 +17,16 @@ function ProgressBar({ percent }){
                 <View style={[styles.fill, {width: `${safePercent}%`}]}></View>
             </View>
 
-            <Pressable style={styles.pressableViewDetailsContainer}>
+            <Pressable 
+            onPress={() => {}}
+                style={({ pressed }) => [
+                    styles.pressableViewDetailsContainer,
+                    {
+                    opacity: pressed ? 0.85 : 1,
+                    transform: [{ scale: pressed ? 0.98 : 1 }],
+                    },
+                ]}
+            >
                     <Text style={styles.viewDetailsText}>View Details</Text>
                 </Pressable>
         </View>
