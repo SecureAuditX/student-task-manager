@@ -10,8 +10,10 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import ProgressBar from '../ui/ProgressBar'
+// import { useNavigation } from '@react-navigation/native'
 
 function HomeScreen(){
+    // const [navigation] = useNavigation()
     return(
         <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
             <StatusBar style="dark" />
@@ -34,6 +36,7 @@ function HomeScreen(){
                     }}
                     />
                 </Pressable>
+
                 <Pressable
                 // onPress={}
                 style={styles.pressableNotifyContainer}
@@ -56,31 +59,46 @@ function HomeScreen(){
             
             <View style={styles.taskSection}>
                 {/* Add Task Button */}
-            <Pressable style={styles.addTaskButton}>
-                <View>
-                    <Image 
-                    source={require("../../assets/add.png")}
-                    style={{width: 45, height: 45, resizeMode: "contain"}}
-                    />
-                </View>  
-                <Text style={styles.addTaskText}>Add Task</Text>  
-            </Pressable>
+            <Pressable
+                onPress={() => {}}
+                style={({ pressed }) => [
+                    styles.addTaskButton,
+                    {
+                    opacity: pressed ? 0.85 : 1,
+                    transform: [{ scale: pressed ? 0.98 : 1 }],
+                    },
+                ]}
+                >
+                <Image
+                    source={require('../../assets/add.png')}
+                    style={{ width: 45, height: 45, resizeMode: 'contain' }}
+                />
+                <Text style={styles.addTaskText}>Add Task</Text>
+                </Pressable>
 
                 {/* Q&A Section */}
-            <Pressable style={styles.QAButton}>
-                <View>
+            <Pressable 
+             onPress={() => {}}
+                style={({ pressed }) => [
+                    styles.QAButton,
+                    {
+                    opacity: pressed ? 0.85 : 1,
+                    transform: [{ scale: pressed ? 0.98 : 1 }],
+                    },
+                ]}
+                >   
                     <Image 
                     source={require("../../assets/Q&A.png")}
                     style={{width: 35, height: 35, resizeMode: "contain"}}
                     />
-                </View>  
+                  
                 <Text style={styles.QAText}>Q&A Section</Text>  
             </Pressable>
             </View>
 
             {/* Tasks Section */}
-            <View>
-                <Text>Upcoming Tasks</Text>
+            <View style={styles.upcomingTaskContainer}>
+                <Text style={styles.upcomingTaskText}>Upcoming Tasks</Text>
               
             </View>
             </ScrollView>
@@ -89,10 +107,11 @@ function HomeScreen(){
     )
 }
 
+// Styling
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#EDEDED",
+        backgroundColor: "#FFFFFF",
         paddingHorizontal: 20,
         paddingTop: 20
     },
@@ -101,7 +120,8 @@ const styles = StyleSheet.create({
         
     },
     welcomeText: {
-        fontSize: 15
+        fontSize: 15,
+        paddingHorizontal: 10
     },
     dashboardTextContainer: {
         flexDirection: "row",
@@ -110,7 +130,9 @@ const styles = StyleSheet.create({
     },
     dashboardText:  {
         fontSize: 25,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        paddingHorizontal: 10,
+        color: "#030712"
     },
     pressableSearchContainer: {
         flexDirection: 'row',
@@ -140,7 +162,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     addTaskButton: {
-        backgroundColor: "#0F172A",
+        backgroundColor: "#0e1933",
         justifyContent: "center",
         alignItems: "center",
         width: 170,
@@ -169,6 +191,15 @@ const styles = StyleSheet.create({
         color: "#030712",
         fontWeight: "bold",
         marginTop: 10
+    },
+    upcomingTaskContainer: {
+        marginTop: 30
+    },
+    upcomingTaskText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#030712",
+        paddingHorizontal: 10
     }
 })
 

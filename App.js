@@ -8,6 +8,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Success from './components/screens/Success';
 import HomeScreen from './components/Dashboard/Home';
+import NewTaskScreen from './components/Dashboard/NewTask';
 
 // Keep the splash screen visible while fonts load
 SplashScreen.preventAutoHideAsync();
@@ -41,7 +42,9 @@ export default function App() {
         {/* <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Login" component={Login} /> 
         <Stack.Screen name="SuccessScreen" component={Success} /> */}
-        <Stack.Screen name="Home" component={HomeScreen} />
+        {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+        <Stack.Screen name="NewTask" component={NewTaskScreen} />
+       
       </Stack.Navigator>
     </NavigationContainer>
   );
