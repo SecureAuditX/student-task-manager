@@ -20,7 +20,9 @@ function HomeScreen({navigation}){
     const { tasks } = useContext(TaskContext)
 
     return(
-        <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
+        <SafeAreaView style={styles.container} 
+        edges={['top', 'left', 'right', 'bottom']}
+        >
             <StatusBar style="dark" />
 
             <View style={styles.welcomeTextContainer}>
@@ -56,7 +58,7 @@ function HomeScreen({navigation}){
                 </Pressable>
             </View>
             
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
             {/* Progress Bar Tracker Container */}
             <View>
                 <ProgressBar percent={65}/>
@@ -192,13 +194,20 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     QAButton: {
-        backgroundColor: "#F5F5F5",
+        backgroundColor: "#FFFFFF",
         justifyContent: "center",
         alignItems: "center",
         width: 170,
         height: 120,
         borderRadius: 20,
-        borderColor: "#EDEDED",
+        borderColor: "#f0f0f0",
+        // ios shadow
+        shadowColor: "#000",
+        shadowOffset: {width: 0, height: 4},
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        // Android shadow
+        elevation: 3
     },
     QAText: {
         fontSize: 14,
