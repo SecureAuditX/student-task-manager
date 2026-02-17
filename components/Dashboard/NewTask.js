@@ -12,9 +12,10 @@ import { useContext, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { TaskContext } from '../screens/TaskContext';
 
-function NewTaskScreen(){
-  // const {addTask} = useContext(TaskContext)
+function NewTaskScreen({navigation}){
+  const {addTask} = useContext(TaskContext)
   const [courseTitle, setCourseTitle] = useState("")
   const [courseDesc, setCourseDesc] = useState("")
   const [courseCategory, setCourseCategory] = useState("")
@@ -26,6 +27,21 @@ function NewTaskScreen(){
 
   const options = ["Low", "Medium", "High"]
 
+  const handleCreateTask = () => {
+     if (!courseTitle.trim()) return;
+     if (!courseCategory.trim()) return;
+    addTask({
+      id: Date.now(),
+      title: courseTitle,
+      description: courseDesc,
+      category: courseCategory,
+      dueDate: courseDueDate,
+      priority,
+      progress: 0,
+    })
+    navigation.goBack()
+  }
+ 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
@@ -112,11 +128,7 @@ function NewTaskScreen(){
             }}
             /> 
             </View> 
-          )}
-        
-          
-          
-        
+          )}         
       
       {/* Priority Option */}
       <Text style={styles.label}>Priority</Text>
@@ -145,7 +157,7 @@ function NewTaskScreen(){
       {/* Create Task Button */}
       <View style={styles.createTaskButtonContainer}>
           <Pressable
-        onPress={() => {}}
+        onPress={handleCreateTask}
         style={({ pressed }) => [
                     styles.createTaskButton,
                     {
