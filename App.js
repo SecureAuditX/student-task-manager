@@ -19,11 +19,11 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
-    'ButtonText': require("./assets/fonts/ArchivoBlack-Regular.ttf"),
-    'TitleText': require("./assets/fonts/NotoSansSC-Bold.ttf"),
-    'noteText': require("./assets/fonts/NotoSansSC-Light.ttf"),
-    'SuccessText': require("./assets/fonts/NotoSansSC-Medium.ttf"),
-    'SuccessTitleText': require("./assets/fonts/NotoSansSC-Bold.ttf"),
+    'HeaderText': require("./assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Bold.ttf"),
+    'InputText': require("./assets/fonts/Inter/static/Inter_18pt-Regular.ttf"),
+    'NoteText': require("./assets/fonts/Inter/static/Inter_18pt-Light.ttf"),
+    // 'SuccessText': require("./assets/fonts/NotoSansSC-Medium.ttf"),
+    // 'SuccessTitleText': require("./assets/fonts/NotoSansSC-Bold.ttf"),
   });
 
   // Hide the splash screen once fonts are ready
@@ -42,9 +42,9 @@ export default function App() {
     <TaskProvider>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Login" component={Login} /> 
-        <Stack.Screen name="SuccessScreen" component={Success} /> */}
+        <Stack.Screen name="SuccessScreen" component={Success} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="NewTask" component={NewTaskScreen} />
         <Stack.Screen name="TaskCard" component={TaskCard} />

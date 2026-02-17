@@ -98,7 +98,6 @@ function HomeScreen({navigation}){
                     source={require("../../assets/Q&A.png")}
                     style={{width: 35, height: 35, resizeMode: "contain"}}
                     />
-                  
                 <Text style={styles.QAText}>Q&A Section</Text>  
             </Pressable>
             </View>

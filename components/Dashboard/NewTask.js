@@ -5,7 +5,7 @@ import {
   Image,
   Pressable,
   StyleSheet,
-  Platform
+  Platform,
 }
 from 'react-native'
 import { useContext, useState } from 'react'
@@ -45,8 +45,17 @@ function NewTaskScreen({navigation}){
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
-
+      <View style={styles.headerContainer}>
+        <Pressable
+        onPress={() => navigation.goBack()}
+        >
+      <Image 
+      source={require("../../assets/left-arrow.png")}
+      style={{width: 25, height: 25, resizeMode: "contain"}}
+      />
+      </Pressable>
       <Text style={styles.headerText}>New Task</Text>
+      </View>
 
       <Text style={styles.label}>Task Title</Text>
       {/* Course input */}
@@ -185,13 +194,20 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: "#FFFFFF",
   },
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 20,
+    marginBottom: 20
+  },
   headerText: {
     color: "#0e1933",
     fontSize: 18,
     fontWeight: "bold",
     justifyContent: "center",
     alignSelf: "center",
-    marginBottom: 24
+    marginBottom: 24,
+    marginRight: 150
   },
   label: {
     fontSize: 16,

@@ -161,14 +161,14 @@ const styles = StyleSheet.create({
     title: {
         alignItems: 'flex-start',
         paddingHorizontal: 20,
-        marginRight: 15,
+        marginRight: 30,
         marginTop: 10
     },
     textTitle: {
         fontSize: 25,
-        fontWeight: Platform.OS === "ios" ? "bold" : "",
+        fontWeight: Platform.OS === "ios" ? "700" : "",
         marginTop: 10,
-        fontFamily: "ButtonText",
+        fontFamily: "HeaderText",
          
     },
     textTitle2: {
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
         marginTop: Platform.OS === "ios" ? 10 : 0,
         color: "#222831",
         textAlign: 'center',
-        fontFamily: "TitleText"
+        fontFamily: "NoteText"
     }, 
     inputMainContainer: {
         marginTop: 30
@@ -204,12 +204,14 @@ const styles = StyleSheet.create({
     inputStyle: {
         flex: 1,
         fontSize: 16,
+        fontFamily: "InputText",
         marginLeft: 12,
         color: "#111827",
     },
     errorText: {
         color: "red",
         fontSize: 12,
+        fontFamily: "InputText",
         marginTop: 5,
         marginLeft: 5,
         alignSelf: "flex-start" // Forces text to the left
@@ -227,7 +229,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: Platform.OS === "ios" ? "bold" : "",
         color: "white",
-        fontFamily: "ButtonText"
+        fontFamily: "HeaderText"
     }, 
     signInContainer: {
         flexDirection: "row",
@@ -236,10 +238,12 @@ const styles = StyleSheet.create({
     signInText: {
         color: "#7B8AA0",
         fontSize: 14,
+        fontFamily: "InputText"
     },
     signInText2: {
         color: "#155DFC",
         fontWeight: "bold",
+         fontFamily: "InputText"
         
     }
 })
