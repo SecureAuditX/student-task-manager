@@ -5,7 +5,6 @@ import {
   Image,
   Pressable,
   StyleSheet,
-  Platform
 }
 from 'react-native'
 import { useContext, useState } from 'react'
@@ -20,6 +19,12 @@ function NewTaskScreen(){
   const [courseCategory, setCourseCategory] = useState("")
   const [courseDueDate, setCourseDueDate] = useState("")
   const [showPicker, setShowPicker] = useState(false)
+
+  // Priority implementation
+  const [priority, setPriority] = useState("Medium")
+
+  const options = ["Low", "Medium", "High"]
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
@@ -96,6 +101,49 @@ function NewTaskScreen(){
           )}
         </View>
       
+      {/* Priority Option */}
+      <Text style={styles.label}>Priority</Text>
+      <View style={styles.priorityContainer}>
+        {options.map((item) => {
+          const isActive = priority === item;
+
+          return (
+            <Pressable 
+            key={item}
+            onPress={() => setPriority(item)}
+            style={[
+              styles.priorityButton, isActive && styles.activeButton
+            ]}
+            >
+              <Text style={[
+                styles.priorityButtonText,
+                isActive && styles.activeText
+                ]}
+                >{item}</Text>
+            </Pressable>
+          )
+        })}
+      </View>
+
+      {/* Create Task Button */}
+      <View style={styles.createTaskButtonContainer}>
+          <Pressable
+        onPress={() => {}}
+        style={({ pressed }) => [
+                    styles.createTaskButton,
+                    {
+                    opacity: pressed ? 0.85 : 1,
+                    transform: [{ scale: pressed ? 0.98 : 1 }],
+                    },
+                ]}
+        >
+          <Image
+          source={require("../../assets/plus.png")} 
+          style={{width: 30, height: 30, resizeMode: "contain"}}
+          />
+          <Text style={styles.createTaskButtonText}>Create Task</Text>
+        </Pressable>
+      </View>
 
     </SafeAreaView>
   )
@@ -106,7 +154,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   headerText: {
     color: "#0e1933",
@@ -142,10 +190,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     height: 120,
   },
-  // //////
   input3Container: {
     flexDirection: "row",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    gap: 20
   },
   courseInput3: {
     borderWidth: 0.5,
@@ -156,7 +204,56 @@ const styles = StyleSheet.create({
     borderColor: "rgba(110, 108, 108, 0.35)",
     backgroundColor: "#e9eff8",
     marginBottom: 20,
-    width: 150
+    width: 170
+  },
+  priorityContainer: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  priorityButton: {
+    marginTop: 10,
+    borderWidth: 0.5,
+    borderColor: "#E3E6EA",
+    backgroundColor: "#f3f6fa",
+    width: 112,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  priorityButtonText: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: "#0e1933"
+  },
+  activeButton: {
+    backgroundColor: "#155DFC",
+    borderColor: "#1E5BFF"
+  },
+  activeText: {
+    color: "#FFF"
+  },
+  createTaskButtonContainer: {
+    flexDirection: "row",
+    marginTop: 20,
+  },
+  createTaskButton: {
+     flexDirection: "row",
+     gap: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    borderWidth: 1,
+    borderRadius: 20,
+    width: 350,
+    height: 55,
+    backgroundColor: "#155DFC",
+    borderColor: "#1E5BFF"
+  },
+  createTaskButtonText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#FFFFFF"
   }
 }) 
 
