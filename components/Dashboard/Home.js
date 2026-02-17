@@ -80,7 +80,7 @@ function HomeScreen({navigation}){
                     source={require('../../assets/add.png')}
                     style={{ width: 45, height: 45, resizeMode: 'contain' }}
                 />
-                <Text style={styles.addTaskText}>Add Task</Text>
+                <Text style={styles.addTaskText}>Add  Task</Text>
                 </Pressable>
 
                 {/* Q&A Section */}
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     },
     welcomeText: {
         fontSize: 15,
+        fontFamily: "NoteText",
         paddingHorizontal: 10
     },
     dashboardTextContainer: {
@@ -145,15 +146,15 @@ const styles = StyleSheet.create({
     },
     dashboardText:  {
         fontSize: 25,
+        fontFamily: "HeaderText",
         fontWeight: "bold",
         paddingHorizontal: 10,
         color: "#030712"
     },
     pressableSearchContainer: {
         flexDirection: 'row',
-        marginLeft: 160,
-        borderColor: "#2C2C2C",
-        borderWidth: 1,
+        marginLeft: 150,
+        backgroundColor: "#f4f3fd",
         borderRadius: 40,
         width: 30,
         height: 30,
@@ -162,8 +163,7 @@ const styles = StyleSheet.create({
     },
     pressableNotifyContainer: {
         flexDirection: 'row',
-        borderColor: "#2C2C2C",
-        borderWidth: 1,
+        backgroundColor: "#f4f3fd",
         borderRadius: 40,
         width: 30,
         height: 30,
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     addTaskText: {
         fontSize: 14,
         color: "#FFFFFF",
-        fontWeight: "bold",
+        fontFamily: "HeaderText",
         marginTop: 10
     },
     QAButton: {
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     QAText: {
         fontSize: 14,
         color: "#030712",
-        fontWeight: "bold",
+        fontFamily: "HeaderText",
         marginTop: 10
     },
     upcomingTaskContainer: {
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     },
     upcomingTaskText: {
         fontSize: 16,
-        fontWeight: "bold",
+        fontFamily: "HeaderText",
         color: "#030712",
         paddingHorizontal: 10
     },
@@ -227,6 +227,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#999",
     marginTop: 40,
+    fontSize: 16
   },
   fab: {
     position: "absolute",
