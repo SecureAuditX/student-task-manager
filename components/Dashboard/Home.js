@@ -5,15 +5,20 @@ import {
     Pressable,
     Platform,
     Image,
-    ScrollView
+    ScrollView,
+    FlatList
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import ProgressBar from '../ui/ProgressBar'
-// import { useNavigation } from '@react-navigation/native'
+import { useContext } from 'react'
+import { TaskContext } from '../screens/TaskContext'
+import TaskCard from '../screens/TaskCard'
 
-function HomeScreen(){
-    // const [navigation] = useNavigation()
+
+function HomeScreen({navigation}){
+    const { tasks } = useContext(TaskContext)
+
     return(
         <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
             <StatusBar style="dark" />
@@ -60,7 +65,7 @@ function HomeScreen(){
             <View style={styles.taskSection}>
                 {/* Add Task Button */}
             <Pressable
-                onPress={() => {}}
+                onPress={() => navigation.navigate("NewTask")}
                 style={({ pressed }) => [
                     styles.addTaskButton,
                     {
@@ -99,7 +104,16 @@ function HomeScreen(){
             {/* Tasks Section */}
             <View style={styles.upcomingTaskContainer}>
                 <Text style={styles.upcomingTaskText}>Upcoming Tasks</Text>
-              
+
+                <FlatList 
+                data={tasks}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => <TaskCard task={item} />}
+                ListEmptyComponent={
+                    <Text style={styles.empty}>No tasks yet</Text>
+                }
+                scrollEnabled={false}
+                />
             </View>
             </ScrollView>
 
@@ -178,7 +192,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     QAButton: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#F5F5F5",
         justifyContent: "center",
         alignItems: "center",
         width: 170,
@@ -200,7 +214,27 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#030712",
         paddingHorizontal: 10
-    }
+    },
+    empty: {
+    textAlign: "center",
+    color: "#999",
+    marginTop: 40,
+  },
+  fab: {
+    position: "absolute",
+    bottom: 24,
+    right: 24,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: "#1E5BFF",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  fabText: {
+    color: "#fff",
+    fontSize: 28,
+  },
 })
 
 export default HomeScreen
