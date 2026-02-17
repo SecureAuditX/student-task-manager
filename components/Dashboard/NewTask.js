@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: "#0e1933",
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "HeaderText",
     justifyContent: "center",
     alignSelf: "center",
     marginBottom: 24,
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "HeaderText",
     color: "#0e1933"
   },
   courseInput: {
@@ -224,7 +224,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f6f8fa",
     marginBottom: 20,
     width: 365,
-    height: 50
+    height: 50,
+    fontFamily: "NoteText"
   },
   courseInput2: {
     borderWidth: 0.5,
@@ -237,6 +238,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 365,
     height: 110,
+    fontFamily: "NoteText"
   },
   input3Container: {
     flexDirection: "row",
@@ -253,7 +255,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f6f8fa",
     marginBottom: 20,
     width: 170,
-    height: 50
+    height: 50,
+    fontFamily: "NoteText"
   },
   priorityContainer: {
     flexDirection: "row",
@@ -269,18 +272,22 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
+    fontFamily: "InputText"
   },
   priorityButtonText: {
     fontSize: 14,
     fontWeight: "500",
-    color: "#0e1933"
+    color: "#0e1933",
+    fontFamily: "InputText"
   },
   activeButton: {
     backgroundColor: "#155DFC",
-    borderColor: "#1E5BFF"
+    borderColor: "#1E5BFF",
+    
   },
   activeText: {
-    color: "#FFF"
+    color: "#FFF",
+    fontFamily: "InputText"
   },
   createTaskButtonContainer: {
     flexDirection: "row",
@@ -301,7 +308,7 @@ const styles = StyleSheet.create({
   },
   createTaskButtonText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "HeaderText",
     color: "#FFFFFF"
   },
 iosPickerWrapper: {

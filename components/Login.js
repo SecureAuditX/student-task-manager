@@ -33,6 +33,7 @@ function Login({navigation}) {
             setPassword("")
             setErrors({})
         }
+        navigation.replace("Home")
     }
 
     return(
@@ -148,21 +149,22 @@ const styles = StyleSheet.create({
     },
     title: {
         alignItems: 'flex-start',
-        marginRight: 65,
+        marginRight: 70,
         marginTop: 10
     },
     textTitle: {
         fontSize: 25,
         fontWeight: Platform.OS === "ios" ? "bold" : "",
         marginTop: 10, 
-        fontFamily: "ButtonText"
+        fontFamily: "HeaderText",
+        color: "#081129",
     },
     textTitle2: {
         fontSize: 15,
-        marginTop: Platform.OS === "ios" ? 10 : 0,
-        color: "#222831",
+        marginTop: Platform.OS === "ios" ? 5 : 0,
+        color: "#081129",
         textAlign: 'center',
-        fontFamily: "TitleText"
+        fontFamily: "InputText"
     }, 
     inputMainContainer: {
         marginTop: 30
@@ -190,12 +192,14 @@ const styles = StyleSheet.create({
     inputStyle: {
         flex: 1,
         fontSize: 16,
+        fontFamily: "NoteText",
         marginLeft: 12,
         color: "#111827",
     },
     errorText: {
         color: "red",
         fontSize: 12,
+        fontFamily: "NoteText",
         position: "absolute",
         bottom: -20,
         left: 5 
@@ -207,7 +211,7 @@ const styles = StyleSheet.create({
     },
     forgetPasswordText: {
         fontSize: 15,
-        fontWeight: "bold",
+        fontFamily: "InputText",
         color: "#155DFC",
         marginLeft: 200,
         marginBottom: 20
@@ -226,7 +230,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: Platform.OS === "ios" ? "bold" : "",
         color: "white",
-        fontFamily: "ButtonText"
+        fontFamily: "HeaderText"
     }, 
     signInContainer: {
         flexDirection: "row",
@@ -234,11 +238,12 @@ const styles = StyleSheet.create({
     },
     signInText: {
         color: "#7B8AA0",
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: "NoteText"
     },
     signInText2: {
         color: "#155DFC",
-        fontWeight: "bold"
+        fontFamily: "InputText"
     }
 })
 

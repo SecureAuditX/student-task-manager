@@ -166,15 +166,15 @@ const styles = StyleSheet.create({
     },
     textTitle: {
         fontSize: 25,
-        fontWeight: Platform.OS === "ios" ? "700" : "",
+        fontWeight: Platform.OS === "ios" ? "bold" : "",
         marginTop: 10,
         fontFamily: "HeaderText",
-         
+        color: "#081129",
     },
     textTitle2: {
         fontSize: 13,
-        marginTop: Platform.OS === "ios" ? 10 : 0,
-        color: "#222831",
+        marginTop: Platform.OS === "ios" ? 5 : 0,
+        color: "#081129",
         textAlign: 'center',
         fontFamily: "NoteText"
     }, 

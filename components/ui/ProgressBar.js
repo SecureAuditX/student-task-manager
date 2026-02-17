@@ -58,15 +58,16 @@ const styles = StyleSheet.create({
         
     },
     label: {
-        marginTop: 6,
+        marginTop: 5,
         fontSize: 25,
         color: "white",
-        fontWeight: "bold"
+        fontFamily: "HeaderText"
     },
     label2: {
         marginTop: 20,
         fontSize: 14,
-        color: "white"
+        fontFamily: "NoteText",
+        color: "#FFFFFF"
     },
     pressableViewDetailsContainer: {
         backgroundColor: "rgba(255, 255, 255, 0.2)",
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     },
     viewDetailsText: {
         fontSize: 15,
-        fontWeight: "bold",
+        fontFamily: "InputText",
         color: "#FFFFFF"
     }
 })

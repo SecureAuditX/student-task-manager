@@ -53,15 +53,16 @@ const styles = StyleSheet.create({
     elevation: 3
   },
   title: {
-    fontWeight: "bold",
+    fontFamily: "HeaderText",
     fontSize: 16,
     color: "#070e21",
-    marginBottom: 3
+    marginBottom: 5
   },
   description: {
     fontSize: 13,
     color: "#5d5e60",
-    marginBottom: 3
+    marginBottom: 3,
+    fontFamily: "InputText"
   },
   taskContainer: {
     flexDirection: "row",
@@ -72,7 +73,8 @@ const styles = StyleSheet.create({
   date: {
     fontSize: 11,
     color: "#5d5e60",
-    marginBottom: 3
+    marginBottom: 3,
+    fontFamily: "NoteText"
   },
   meta: {
     backgroundColor: "#f8dcdc",
@@ -85,9 +87,8 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   metaText: {
-    fontSize: 11.5,
-    fontWeight: "600",
-    color: "red",
+    fontSize: 12,
+    fontFamily: "HeaderText"
   }
 })
 
