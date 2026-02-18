@@ -4,13 +4,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen'; // Recommended for a smooth start
 import { useEffect } from 'react';
 
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Success from './components/screens/Success';
-import HomeScreen from './components/Dashboard/Home';
-import NewTaskScreen from './components/Dashboard/NewTask';
-import TaskCard from './components/screens/TaskCard';
-import TaskProvider from './components/screens/TaskContext';
+import Signup from './screens/auth/Signup'
+import Login from './screens/auth/Login';
+import Success from './screens/Success';
+import HomeScreen from './screens/home/Home';
+import NewTaskScreen from './screens/home/NewTask';
+import TaskCard from './components/TaskCard';
+import TaskProvider from './context/TaskContext';
 
 // Keep the splash screen visible while fonts load
 SplashScreen.preventAutoHideAsync();

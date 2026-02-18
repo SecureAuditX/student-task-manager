@@ -12,7 +12,7 @@ import { useContext, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { TaskContext } from '../screens/TaskContext';
+import { TaskContext } from '../../context/TaskContext';
 
 function NewTaskScreen({navigation}){
   const {addTask} = useContext(TaskContext)
