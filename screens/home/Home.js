@@ -10,10 +10,12 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
-import ProgressBar from '../ui/ProgressBar'
+import ProgressBar from '../../components/ProgressBar'
 import { useContext } from 'react'
-import { TaskContext } from '../screens/TaskContext'
-import TaskCard from '../screens/TaskCard'
+import { TaskContext } from '../../context/TaskContext'
+import TaskCard from '../../components/TaskCard'
+
+
 
 
 function HomeScreen({navigation}){

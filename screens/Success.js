@@ -38,7 +38,7 @@ function Success({navigation}){
                 { transform: [{ scale: scaleValue}]}
             ]}>
                 <Image 
-                source={require("../../assets/success.png")}
+                source={require("../assets/success.png")}
                 style={styles.image}
                 />
             </Animated.View>

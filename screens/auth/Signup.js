@@ -4,13 +4,14 @@ import {
     Pressable, 
     Image, 
     StyleSheet,
-    TextInput, 
-    Platform
+    TextInput,
+    Platform 
 } from 'react-native'
 import { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
 
-function Login({navigation}) {  
+function Signup({navigation}) { 
+    const [fullname, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState({})
@@ -18,6 +19,7 @@ function Login({navigation}) {
     const validateInput = () => {
         let errors = {}
 
+        if(!fullname) errors.fullname = "Full Name is required";
         if(!email) errors.email = "Email is required";
         if(!password) errors.password = "Password is required";
         else if (password.length < 8) errors.password = "Password is too weak";
@@ -28,39 +30,55 @@ function Login({navigation}) {
 
     const handleSubmit = () => {
         if (validateInput()) {
-            console.log("Submitted", email, password)
+            console.log("Submitted", fullname, email, password)
+            setFullName("")
             setEmail("")
             setPassword("")
             setErrors({})
+            navigation.navigate("SuccessScreen")
         }
-        navigation.replace("Home")
     }
-
     return(
-        
+        <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
                 {/* Logo */}
                 <View style={styles.imageContainer}>
                     <Image 
-                        source={require("../assets/logo.png")}
+                        source={require("../../assets/logo.png")}
                         style={styles.image}
                     />
                 </View>
 
                 {/* Title */}
                 <View style={styles.title}>
-                    <Text style={styles.textTitle}>Welcome back!</Text>
+                    <Text style={styles.textTitle}>Create Account</Text>
                     <Text style={styles.textTitle2}>
-                        Sign in to continue your learning journey
+                        Join thousands of students and start organizing today
                     </Text>
                 </View>
 
                 <View style={styles.inputMainContainer}>
+                    
+                    {/* Full Name Field */}
+                    <View style={styles.fieldWrapper}>
+                        <View style={styles.inputContainer}>
+                            <Image style={styles.icon} source={require("../../assets/user.png")}/>
+                            <TextInput 
+                                placeholder="Full Name"
+                                placeholderTextColor="#7B8AA0"
+                                autoCorrect={false}
+                                value={fullname}
+                                onChangeText={setFullName}
+                                style={styles.inputStyle}
+                            />
+                        </View>
+                        {errors.fullname && <Text style={styles.errorText}>{errors.fullname}</Text>}
+                    </View>
 
                     {/* Email Field */}
                     <View style={styles.fieldWrapper}>
                         <View style={styles.inputContainer}>
-                            <Image style={styles.icon} source={require("../assets/mail.png")}/>
+                            <Image style={styles.icon} source={require("../../assets//mail.png")}/>
                             <TextInput 
                                 placeholder="Email Address"
                                 placeholderTextColor="#7B8AA0"
@@ -77,7 +95,7 @@ function Login({navigation}) {
                     {/* Password Field */}
                     <View style={styles.fieldWrapper}>
                         <View style={styles.inputContainer}>
-                            <Image style={styles.icon} source={require("../assets/lock.png")}/>
+                            <Image style={styles.icon} source={require("../../assets//lock.png")}/>
                             <TextInput 
                                 placeholder="Password"
                                 placeholderTextColor="#7B8AA0"
@@ -91,37 +109,30 @@ function Login({navigation}) {
                         {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
                     </View>
                 </View>
-                    <Pressable style={styles.forgetPasswordContainter}
-                    onPress={() => {}}
-                    >
-                        <Text style={styles.forgetPasswordText}>Forgot Password?</Text>
-                        
-                    </Pressable>
 
                 {/* Submit Button */}
                 <Pressable
-                onPress={handleSubmit}
-                style={({ pressed }) => ({
-                    transform: [{ scale: pressed ? 0.97 : 1 }],
-                    opacity: pressed ? 0.9 : 1,
-                })}
-                >
-                <View style={styles.button}>
-                    <Text style={styles.buttonText}>Sign In</Text>
-                </View>
-                </Pressable>
-
+                    onPress={handleSubmit}
+                    style={({ pressed }) => ({
+                        transform: [{ scale: pressed ? 0.97 : 1 }],
+                        opacity: pressed ? 0.9 : 1,
+                    })}
+                    >
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Create Account</Text>
+                    </View>
+                    </Pressable>
 
                 {/* Footer */}
                 <View style={styles.signInContainer}>
-                    <Text style={styles.signInText}>Don't have an account? </Text>
-                    <Pressable onPress={() => navigation.navigate("Signup")}>
-                        <Text style={styles.signInText2}>Sign Up</Text>
+                    <Text style={styles.signInText}>Already have an account? </Text>
+                    <Pressable onPress={() => navigation.navigate("Login")}>
+                        <Text style={styles.signInText2}>Sign In</Text>
                     </Pressable>
                 </View>
 
             </SafeAreaView>
-        
+        </SafeAreaProvider>
     )
 }
 
@@ -130,7 +141,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#f5f5f5",
         alignItems: "center",
-        marginTop: 50
+        marginTop: 20
     },
     imageContainer: {
         backgroundColor: "#155DFC",
@@ -149,29 +160,30 @@ const styles = StyleSheet.create({
     },
     title: {
         alignItems: 'flex-start',
-        marginRight: 70,
+        paddingHorizontal: 20,
+        marginRight: 30,
         marginTop: 10
     },
     textTitle: {
         fontSize: 25,
         fontWeight: Platform.OS === "ios" ? "bold" : "",
-        marginTop: 10, 
+        marginTop: 10,
         fontFamily: "HeaderText",
         color: "#081129",
     },
     textTitle2: {
-        fontSize: 15,
+        fontSize: 13,
         marginTop: Platform.OS === "ios" ? 5 : 0,
         color: "#081129",
         textAlign: 'center',
-        fontFamily: "InputText"
+        fontFamily: "NoteText"
     }, 
     inputMainContainer: {
         marginTop: 30
     },
     fieldWrapper: {
         width: 370,
-        marginBottom: 25, 
+        marginBottom: 15, 
     },
     inputContainer: {
         flexDirection: 'row',
@@ -192,29 +204,17 @@ const styles = StyleSheet.create({
     inputStyle: {
         flex: 1,
         fontSize: 16,
-        fontFamily: "NoteText",
+        fontFamily: "InputText",
         marginLeft: 12,
         color: "#111827",
     },
     errorText: {
         color: "red",
         fontSize: 12,
-        fontFamily: "NoteText",
-        position: "absolute",
-        bottom: -20,
-        left: 5 
-    },
-    forgetPasswordContainter: {
-        width: 370,
-        marginBottom: 20,
-        alignItems: "flex-end"
-    },
-    forgetPasswordText: {
-        fontSize: 15,
         fontFamily: "InputText",
-        color: "#155DFC",
-        marginLeft: 200,
-        marginBottom: 20
+        marginTop: 5,
+        marginLeft: 5,
+        alignSelf: "flex-start" // Forces text to the left
     },
     button: {
         backgroundColor: "#155DFC",
@@ -223,8 +223,7 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 10,
-        
+        marginTop: 10
     },
     buttonText: {
         fontSize: 18,
@@ -239,12 +238,14 @@ const styles = StyleSheet.create({
     signInText: {
         color: "#7B8AA0",
         fontSize: 14,
-        fontFamily: "NoteText"
+        fontFamily: "InputText"
     },
     signInText2: {
         color: "#155DFC",
-        fontFamily: "InputText"
+        fontWeight: "bold",
+         fontFamily: "InputText"
+        
     }
 })
 
-export default Login;
+export default Signup;
