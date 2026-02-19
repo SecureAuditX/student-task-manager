@@ -3,14 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen'; // Recommended for a smooth start
 import { useEffect } from 'react';
-
-import Signup from './screens/auth/Signup'
-import Login from './screens/auth/Login';
-import Success from './screens/Success';
-import HomeScreen from './screens/home/Home';
-import NewTaskScreen from './screens/home/NewTask';
-import TaskCard from './components/TaskCard';
 import TaskProvider from './context/TaskContext';
+import RootNavigator from "./navigation/RootNavigator"
+import AuthProvider from './context/AuthContext';
 
 // Keep the splash screen visible while fonts load
 SplashScreen.preventAutoHideAsync();
@@ -39,18 +34,12 @@ export default function App() {
   }
 
   return (
+    <AuthProvider>
     <TaskProvider>
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Login" component={Login} /> 
-        <Stack.Screen name="SuccessScreen" component={Success} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="NewTask" component={NewTaskScreen} />
-        <Stack.Screen name="TaskCard" component={TaskCard} />
-       
-      </Stack.Navigator>
+      <RootNavigator />
     </NavigationContainer>
     </TaskProvider>
+    </AuthProvider>
   );
 }
