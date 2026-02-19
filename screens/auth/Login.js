@@ -9,11 +9,15 @@ import {
 } from 'react-native'
 import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 
 function Login({navigation}) {  
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState({})
+
+    const { login } = useContext(AuthContext)
 
     const validateInput = () => {
         let errors = {}
@@ -32,8 +36,9 @@ function Login({navigation}) {
             setEmail("")
             setPassword("")
             setErrors({})
+            login()  // this switches Auth -> AppTabs
         }
-        navigation.replace("Home")
+        
     }
 
     return(
