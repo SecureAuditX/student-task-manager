@@ -6,7 +6,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 
-function StudySchedule(){
+function Subject(){
     return (
         <SafeAreaView style={styles.container}
         edges={["top", "left", "right", "bottom"]}
@@ -14,7 +14,7 @@ function StudySchedule(){
             <StatusBar style="dark" />
 
             <View style={styles.sampleContainer}>
-                <Text style={styles.sampleText}>Schedule Coming Soon...</Text>
+                <Text style={styles.sampleText}>Subject Coming Soon...</Text>
             </View>
         </SafeAreaView>
     )
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default StudySchedule
+export default Subject
